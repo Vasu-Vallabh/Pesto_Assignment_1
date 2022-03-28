@@ -76,6 +76,22 @@ When the browser encounters CSS styles, it parses the text into the CSS Object M
 
 ![](https://user-images.githubusercontent.com/101351789/160385803-e5f77df9-5635-4045-909e-eb9a112b470b.png)
 
-**Script Processor**
+## Script Processor
 
 The model of the web is synchronous. Authors expect scripts to be parsed and executed immediately when the parser reaches a \<script> tag. The parsing of the document halts until the script has been executed. If the script is external then the resource must first be fetched from the network–this is also done synchronously, and parsing halts until the resource is fetched. This was the model for many years and is also specified in HTML4 and 5 specifications. Authors can add the "defer" attribute to a script, in which case it will not halt document parsing and will execute after the document is parsed. HTML5 adds an option to mark the script as asynchronous so it will be parsed and executed by a different thread.
+
+## Tree Construction
+
+The first step is processing the HTML and building DOM(Document Object Model). The DOM tree describes the content of the document. The The `<html>` element is the first tag and root node of the document tree. The tree reflects the relationship and hierarchies between different tags. Tags nested within other tags are child nodes. The greater the number of DOM nodes, the longer it take to construct the DOM tree.
+
+![](https://user-images.githubusercontent.com/101351789/160390787-bec22a22-0ab4-41d3-b821-6a54c971dda0.gif)
+
+**Preload Scanner**
+
+While the browser builds the DOM tree, this process occupies the main thread. As this happens, the preload scanner will parse through the content available and also request for the high priority resource like CSS, JavaScript, and web fonts. It will retrieve the resources in the background so that by the time the main HTML parser reaches the requested asset, they may possibly already be in flight, or have been downloaded. The optimizations the preload scanner provides reduce blockages. 
+
+**Building the CSSOM**
+
+The second step is processing CSS and building CSSOM tree. The CSS object model is similar to DOM. The DOM and CSSOM are both trees. They are independent data structures. The browser converts the CSS rules into a map of styles it can understand and work with. The browser goes through each rule set in the CSS, creating a tree of nodes with parent, child, and sibling relationships based on the CSS selectors.
+
+Building the CSSOM is very, very fast and is not displayed in a unique colour in current developer tools.
