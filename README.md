@@ -56,4 +56,8 @@ c. Chrome & Opera -> Blink (a fork of WebKit).
 
 ![](https://user-images.githubusercontent.com/101351789/160368334-12eaf79a-6b4d-4ed3-a5be-15d32c0cb2ca.png)
 
-_Basic Flow of any Rendering Engine_
+_**Figure: The Basic Flow of Rendering Engine.**_
+
+![](https://user-images.githubusercontent.com/101351789/160368915-f92ee8cc-0f1e-491c-87ef-d57c3e5bd3bc.png)
+
+_**Figure: The main flow of WebKit Rendering Engine.**_
