@@ -10,9 +10,9 @@ The way the browser interprets and displays HTML files is specified in the HTML 
 
 **The Browser's main components are:**
 
-1. The UI (User Interface)
+1. **The UI (User Interface)**
 
-UI includes the address bar, back/forward button, bookmarking menu, and a display where you see the requested page. 
+UI includes the address bar, back/forward button, bookmarking menu, reloading button, and a display where you see the requested page. 
 
 2. **The Browser Engine**
 
@@ -56,8 +56,20 @@ c. Chrome & Opera -> Blink (a fork of WebKit).
 
 ![](https://user-images.githubusercontent.com/101351789/160368334-12eaf79a-6b4d-4ed3-a5be-15d32c0cb2ca.png)
 
-_**Figure: The Basic Flow of Rendering Engine.**_
+_**Figure: The Basic Flow of  a Rendering Engine.**_
 
 ![](https://user-images.githubusercontent.com/101351789/160368915-f92ee8cc-0f1e-491c-87ef-d57c3e5bd3bc.png)
 
 _**Figure: The main flow of WebKit Rendering Engine.**_
+
+## 4\. Parser(HTML & CSS etc.)
+
+Parsing means analyzing and converting a program into an internal format that a runtime environment can actually run, for example, the JavaScript engine inside browsers.
+
+The browser parses HTML into a DOM tree, HTML parsing involves tokenization and tree construction. If the document is well-formed, parsing it is straightforward and faster.
+
+When the HTML parser finds non-blocking resources, such as an image, the browser will request those and continue parsing but `<script>` tags--particularly those without an `async` or `defer` attribute—blocks rendering, and pauses parsing of HTML. 
+
+When the browser encounters CSS styles, it parses the text into the CSS Object Model (CSSOM), a data structure. It then uses for styling layouts and painting. The browser then creates a render tree from both these structures to be able to paint the content to the screen. 
+
+Similarly JavaScript file also parsed and executed. It is done during compile time or whenever the parser is invoked, such as calling to a method.
