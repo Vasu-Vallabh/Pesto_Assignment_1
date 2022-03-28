@@ -70,6 +70,12 @@ The browser parses HTML into a DOM tree, HTML parsing involves tokenization and 
 
 When the HTML parser finds non-blocking resources, such as an image, the browser will request those and continue parsing but `<script>` tags--particularly those without an `async` or `defer` attribute—blocks rendering, and pauses parsing of HTML. 
 
+**CSS Parsing**
+
 When the browser encounters CSS styles, it parses the text into the CSS Object Model (CSSOM), a data structure. It then uses for styling layouts and painting. The browser then creates a render tree from both these structures to be able to paint the content to the screen. 
 
-Similarly JavaScript file also parsed and executed. It is done during compile time or whenever the parser is invoked, such as calling to a method.
+![](https://user-images.githubusercontent.com/101351789/160385803-e5f77df9-5635-4045-909e-eb9a112b470b.png)
+
+**Script Processor**
+
+The model of the web is synchronous. Authors expect scripts to be parsed and executed immediately when the parser reaches a \<script> tag. The parsing of the document halts until the script has been executed. If the script is external then the resource must first be fetched from the network–this is also done synchronously, and parsing halts until the resource is fetched. This was the model for many years and is also specified in HTML4 and 5 specifications. Authors can add the "defer" attribute to a script, in which case it will not halt document parsing and will execute after the document is parsed. HTML5 adds an option to mark the script as asynchronous so it will be parsed and executed by a different thread.
